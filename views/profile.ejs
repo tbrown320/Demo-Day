@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <title>Pace Place</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <section>Pack Place</section>
+    <nav>
+      <ul class="nav_bar">
+        <li>Home</li>
+        <li>Collection</li>
+        <li>Marketplace</li>
+        <li>Contact us</li>
+      </ul>
+    </nav>
+  </header>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1>Pack Place</h1>
+        <p>Logged in as <%= user.local.email %></p>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+    <section id="ticketer">
+      <p>Tickers of highest prices cards here</p>
+    </section>
+
+    <div class="row">
+
+        <!-- CURRENT GRADER -->
+        <div class="col-sm-12">
+            <div class="well">
+                <h3>My Collection</h3>
+                <!-- if we have cards then we will display it here -->
+                <% if (cards.length > 0) { %>
+                    <h1><%= cards.length %> cards</h1>
+                    <p>Total Value: $<%= totalValue.toFixed(2) %></p>
+                    <% } else { %>
+                    <p>No cards in your collection yet. Start now and add one!</p>
+                    <% } %>
+            </div>
+        </div>
+        <div class="col-sm-12">
+          <h3>Cards</h3>
+          <ul class="cards">
+          <% for(let i=0; i<cards.length; i++) {%>
+            <li class="card" data-id="<%= cards[i]._id %>">
+              <span class="card_player"><%= cards[i].player %></span>
+              <span><%= cards[i].year %> <%= cards[i].set %></span>
+              <span><%= cards[i].company %> <%= cards[i].cardType %></span>
+              <% if (cards[i].parallel) { %>
+              <span>Parallel: <%= cards[i].parallel %></span> 
+            <% } %>
+            <span><i class="fa fa-times" aria-hidden="true"></i></span>
+            </li>
+          <% } %>
+          </ul>
+
+          <h2>Add an card</h2>
+          <form action="/cards" method="POST" class="card_form">
+            <section class="form_group full">
+              <label for="player">Player</label>
+              <input type="text" name="player" placeholder="Lebron James" required>
+            </section>
+            <section class="form_group">
+              <label for="company">Card company</label>
+              <select name="company" id="company">
+                <option value="Panini">Panini</option>
+                <option value="Topps">Topps</option>
+                <option value="Upper Deck">Upper Deck</option>
+                <option value="Other">Other</option>
+              </select>
+            </section>
+            <section class="form_group">
+              <label for="cardType">Card type</label>
+              <select name="cardType" id="cardType">
+                <option value="Base">Base</option>
+                <option value="Rookie">Rookie</option>
+                <option value="Autograph">Autograph</option>
+                <option value="Relic">Relic</option>
+                <option value="Insert">Insert</option>
+              </select>
+            </section>
+            <section class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" id="year" name="year" placeholder="2023" required>
+            </section>
+            <section class="form-group">
+                    <label for="set">Set</label>
+                    <input type="text" id="set" name="set" placeholder="ex. Prizm">
+            </section>
+            <section class="form-group">
+                    <label for="parallel">Parallel</label>
+                    <input type="text" id="parallel" name="parallel" placeholder="ex. Silver Prizm" required>
+            </section>
+            <section class="form-group">
+                    <label for="grade">Grade</label>
+                    <input type="text" id="grade" name="grade" placeholder="PSA 10, BGS 9.5, or Ungraded">
+            </section>
+            <section class="form-group">
+                    <label for="pricePaid">Price Paid ($)</label>
+                    <input type="number" id="pricePaid" name="pricePaid" placeholder="0.00" step="0.01">
+            </section>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>

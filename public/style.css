@@ -1,0 +1,153 @@
+/* body {
+  padding-top: 80px;
+  word-wrap: break-word;
+}
+img {
+  height: 200px;
+}
+
+.assignment .fa {
+  font-size: 20px;
+  cursor: pointer;
+} */
+
+body {
+  padding-top: 80px;
+  word-wrap: break-word;
+  background-color: #795c5f;
+  color: #e09e2d;
+}
+img {
+  height: 200px;
+}
+
+@font-face {
+  font-family: "Bhanira";
+  src: url("/public/fonts/Bhanira.ttf") format("truetype");
+}
+
+header {
+  display: flex;
+  justify-content: space-evenly;
+  background-color:;
+}
+
+.nav_bar {
+  display: flex;
+  text-decoration: none;
+  list-style: none;
+  gap: 50px;
+}
+
+/* add-a-card form: 2-column grid, concise layout */
+.card_form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 520px;
+  padding: 20px;
+  background: #b56b45;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-family: "Bhanira";
+}
+
+#ticketer p {
+  align-items: center;
+  background-color: black;
+  color: white;
+  height: 50px;
+  text-align: center;
+}
+
+/* player stretches across both columns */
+.card_form .full {
+  grid-column: span 2;
+}
+
+.form_group label {
+  display: flex;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form_group input,
+.form_group select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.submit-btn {
+  align-self: end;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #0a2540;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* card list */
+.cards {
+  list-style: none;
+  padding-left: 0;
+}
+
+.card {
+  position: relative;
+  max-height: 56px;
+  overflow: hidden;
+  padding: 10px 12px;
+  margin-bottom: 0;
+  background: #f6f9fc;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: max-height 0.3s ease;
+}
+
+/* each card after the first slides up over the one above it */
+.card + .card {
+  margin-top: -20px;
+}
+
+/* hovering a card pulls it out of the deck to full height */
+.card:hover {
+  max-height: 300px;
+  z-index: 2;
+}
+
+/* keep the delete x visible on the strip */
+.card .fa-times {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.card_player {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card span {
+  display: block;
+}
+
+/* on narrow screens, fall back to one column so nothing squeezes */
+@media (max-width: 500px) {
+  .card-form {
+    grid-template-columns: 1fr;
+  }
+  .card-form .full {
+    grid-column: span 1;
+  }
+}
